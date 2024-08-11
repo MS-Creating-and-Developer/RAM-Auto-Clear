@@ -1,2 +1,2 @@
 read -p "A cada quantos segundos? " temp_loop;
-sudo -i watch -n $temp_loop "free -h; rm -r /tmp/; rm -r /var/tmp/;; rm -r /var/backup/; sudo apt autoclean; sudo apt autoremove; sudo apt update; sudo apt upgrade; /proc/sys/vm/drop_caches; swapoff -a; swapon -a; free -h "
+sudo -i watch -n $temp_loop "free -h -l -t; sync; echo 1 > /proc/sys/vm/drop_caches; sync; echo 2 > /proc/sys/vm/drop_caches; sync; echo 3 > /proc/sys/vm/drop_caches; swapoff -a; swapon -a; rm -r /temp/*"
