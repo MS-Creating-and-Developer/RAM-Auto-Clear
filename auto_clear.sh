@@ -1,3 +1,6 @@
+#Definindo o host para trafego não direcionado 
+sudo ip route add default via <Seu host> dev enx5c531073e79c
+
 #Definição do timer de limpeza da RAM
 read -p "A cada quantos segundos? " temp_loop;
 
@@ -21,3 +24,18 @@ sudo du -h /var | sort -rh | head -n 10
 
 #Manuteção da RAM e do diretório /temp/
 sudo -i watch -n $temp_loop "free -h -l -t; sync; echo 1 > /proc/sys/vm/drop_caches; sync; echo 2 > /proc/sys/vm/drop_caches; sync; echo 3 > /proc/sys/vm/drop_caches; swapoff -a; swapon -a; rmdir -p /tmp/*; rm -r /tmp/*"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
