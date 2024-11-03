@@ -1,5 +1,21 @@
 #Definindo o host para trafego não direcionado 
-sudo ip route add default via <Seu host> dev enx5c531073e79c
+read -p "Qual o gateway?:" route_ip;
+
+read -p "Qual o tipo de rede? 1- wlp2s0, 2- enx5c531073e79c, 3- tun0 ou 4- tun1?" opt_web;
+
+if [[ "$opt_web" -eq 1 ]]; then  # Note as aspas duplas e o espaço correto
+    web_type="wlp2s0"
+elif [[ "$opt_web" -eq 2 ]]; then
+    web_type="enx5c531073e79c"
+elif [[ "$opt_web" -eq 3 ]]; then
+    web_type="tun0"
+elif [[ "$opt_web" -eq 4 ]]; then
+    web_type="tun1"
+else
+    echo "Resposta invalida"
+fi
+
+sudo ip route add default via $route_ip dev $web_type
 
 #Definição do timer de limpeza da RAM
 read -p "A cada quantos segundos? " temp_loop;
@@ -24,18 +40,3 @@ sudo du -h /var | sort -rh | head -n 10
 
 #Manuteção da RAM e do diretório /temp/
 sudo -i watch -n $temp_loop "free -h -l -t; sync; echo 1 > /proc/sys/vm/drop_caches; sync; echo 2 > /proc/sys/vm/drop_caches; sync; echo 3 > /proc/sys/vm/drop_caches; swapoff -a; swapon -a; rmdir -p /tmp/*; rm -r /tmp/*"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
