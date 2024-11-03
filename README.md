@@ -1,2 +1,3 @@
-# RAM-Auto-Clear
-Script em shell que limpa a memória ram do seu computador e alguns diretórios 
+# RAM-autoclean
+
+### This is a script used to clean one's ram while that in use.
